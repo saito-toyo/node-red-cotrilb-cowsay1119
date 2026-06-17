@@ -1,0 +1,166 @@
+[
+    {
+        "id": "5dbfe21bfe302e1e",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "220275f6de9a3a88"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 340,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "220275f6de9a3a88",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "IP",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-hand-pointer-o",
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "Password",
+                "type": "cred",
+                "ui": {
+                    "icon": "font-awesome/fa-folder"
+                }
+            }
+        ],
+        "meta": {
+            "module": "node-red-contrib-cowsay<11-19>",
+            "type": "cowsay",
+            "version": "0.0.1",
+            "author": "Kazuhito Yokoi <kazuhitoyokoi@example.com>",
+            "desc": "Simple cowsay node",
+            "keywords": "node-red,cowsay",
+            "license": "Apache-2.0"
+        },
+        "color": "#3FADB5"
+    },
+    {
+        "id": "220275f6de9a3a88",
+        "type": "function",
+        "z": "5dbfe21bfe302e1e",
+        "name": "cowsay",
+        "func": " msg.payload = cowsay2.say(String(msg.payload));\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "cowsay2",
+                "module": "cowsay2"
+            }
+        ],
+        "x": 200,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c8b3ab59da0194d",
+        "type": "tab",
+        "label": "フロー 1",
+        "disabled": false,
+        "info": "",
+        "env": [
+            {
+                "name": "NAME",
+                "value": "name",
+                "type": "str"
+            }
+        ]
+    },
+    {
+        "id": "cf9d22800e618c60",
+        "type": "inject",
+        "z": "7c8b3ab59da0194d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "321a25aad71da264"
+            ]
+        ]
+    },
+    {
+        "id": "af114aeaf13b7e11",
+        "type": "debug",
+        "z": "7c8b3ab59da0194d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "321a25aad71da264",
+        "type": "subflow:5dbfe21bfe302e1e",
+        "z": "7c8b3ab59da0194d",
+        "name": "",
+        "env": [
+            {
+                "name": "Password",
+                "type": "cred"
+            }
+        ],
+        "x": 240,
+        "y": 240,
+        "wires": [
+            [
+                "af114aeaf13b7e11"
+            ]
+        ]
+    }
+]
